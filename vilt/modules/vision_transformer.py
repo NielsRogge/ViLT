@@ -559,7 +559,9 @@ class VisionTransformer(nn.Module):
     def visual_embed(self, _x, max_image_len=200, mask_it=False):
         _, _, ph, pw = self.patch_embed.proj.weight.shape
 
+        print("Shape of x before patch embeddings:", _x.shape)
         x = self.patch_embed(_x)
+        print("Shape of x after patch embeddings:", x.shape)
         x_mask = (_x.sum(dim=1) != 0).float()[:, None, :, :]
         x_mask = F.interpolate(x_mask, size=(x.shape[2], x.shape[3])).long()
         x_h = x_mask[:, 0].sum(dim=1)[:, 0]
