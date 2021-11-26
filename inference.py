@@ -62,7 +62,7 @@ def main(_config):
             image = Image.open(io.BytesIO(res.content)).convert("RGB")
             #img = pixelbert_transform(size=384)(image)
             # added the following 3 lines instead of pixelbert_transform
-            transformations = T.Compose([T.Resize(384, 384), T.ToTensor(),
+            transformations = T.Compose([T.Resize(384), T.ToTensor(),
             T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
             img = transformations(image)
             img = img.unsqueeze(0).to(device)
