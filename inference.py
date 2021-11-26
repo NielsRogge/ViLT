@@ -11,12 +11,15 @@ import urllib.request
 import ipdb
 
 from PIL import Image
+from vilt import transforms
 
 from vilt.config import ex
 from vilt.modules import ViLTransformerSS
 
 from vilt.transforms import pixelbert_transform
 from vilt.datamodules.datamodule_base import get_pretrained_tokenizer
+
+from torchvision import transforms as T
 
 
 @ex.automain
@@ -57,7 +60,11 @@ def main(_config):
         try:
             res = requests.get(url)
             image = Image.open(io.BytesIO(res.content)).convert("RGB")
-            img = pixelbert_transform(size=384)(image)
+            #img = pixelbert_transform(size=384)(image)
+            # added the following 3 lines instead of pixelbert_transform
+            transformations = T.Compose([Resize(384), T.ToTensor(),
+            T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
+            img = transformations(image)
             img = img.unsqueeze(0).to(device)
         except:
             return False
