@@ -172,6 +172,9 @@ class ViLTransformerSS(pl.LightningModule):
         )
         cls_feats = self.pooler(x)
 
+        print("Shape of cls_feats:", cls_feats.shape)
+        print("Hidden states after pooler:", cls_feats[0,:3])
+
         ret = {
             "text_feats": text_feats,
             "image_feats": image_feats,
