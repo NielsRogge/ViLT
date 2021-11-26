@@ -403,10 +403,8 @@ class PatchEmbed(nn.Module):
 
     def forward(self, x):
         B, C, H, W = x.shape
-        print("Shape of x before patch embeddings:", x.shape)
         # FIXME look at relaxing size constraints
         x = self.proj(x)
-        print("Shape of x after patch embeddings:", x.shape)
         return x
 
 
