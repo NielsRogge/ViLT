@@ -55,6 +55,8 @@ def main(_config):
 
     def infer(url, text):
         try:
+            url = "http://images.cocodataset.org/val2017/000000039769.jpg"
+            text = "What is the color of the sky?"
             res = requests.get(url)
             image = Image.open(io.BytesIO(res.content)).convert("RGB")
             img = pixelbert_transform(size=384)(image)
@@ -73,5 +75,7 @@ def main(_config):
             vqa_logits = model.vqa_classifier(infer["cls_feats"])
 
         answer = id2ans[str(vqa_logits.argmax().item())]
+
+        print(answer)
 
         return [np.array(image), answer]
