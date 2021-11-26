@@ -164,7 +164,6 @@ class ViLTransformerSS(pl.LightningModule):
         for i, blk in enumerate(self.transformer.blocks):
             print(f"Hidden states before layer {i}", x[0,:3,:3])
             x, _attn = blk(x, mask=co_masks)
-            print(f"Hidden states after layer {i}", x[0,:3,:3])
 
         x = self.transformer.norm(x)
         text_feats, image_feats = (
