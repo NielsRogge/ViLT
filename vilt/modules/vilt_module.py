@@ -159,6 +159,7 @@ class ViLTransformerSS(pl.LightningModule):
         x = co_embeds
 
         print("Shape of embeddings before Transformer blocks:", x.shape)
+        print("First values of embeddings:", x[0, :, :])
 
         for i, blk in enumerate(self.transformer.blocks):
             x, _attn = blk(x, mask=co_masks)

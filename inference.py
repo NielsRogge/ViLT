@@ -79,7 +79,9 @@ def main(_config):
             infer = model.infer(batch)
             vqa_logits = model.vqa_classifier(infer["cls_feats"])
 
-        answer = id2ans[str(vqa_logits.argmax().item())]
+        predicted_class_idx = vqa_logits.argmax().item()
+        print("Predicted class idx:", predicted_class_idx)
+        answer = id2ans[str(predicted_class_idx)]
 
         return [np.array(image), answer]
     
