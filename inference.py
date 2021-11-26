@@ -78,5 +78,5 @@ def main(_config):
     
     url = "http://images.cocodataset.org/val2017/000000039769.jpg"
     text = "What is the color of the sky?"
-    answer = infer(url, text)
-    print("Answer:", answer)
+    result = infer(url, text)
+    print("Answer:", result[1])
