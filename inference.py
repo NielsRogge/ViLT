@@ -77,6 +77,6 @@ def main(_config):
         return [np.array(image), answer]
     
     url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-    text = "What is the color of the sky?"
+    text = "How many cats are there?"
     result = infer(url, text)
     print("Answer:", result[1])
