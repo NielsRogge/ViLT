@@ -1,4 +1,5 @@
-pytorch_lightning
+torchtext==0.8.0
+pytorch_lightning==1.1.4
 transformers==4.2.1
 Pillow==8.2.0
 tqdm==4.56.0
